@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Card from './components/Card';
 import Controls from './components/Controls';
 import Box from '@material-ui/core/Box';
+import words from './words';
 
 export const Context = React.createContext(null);
 
@@ -31,21 +32,13 @@ const reducer = (state, action) => {
   }
 }
 
-export default function App() {
-
-    const words = [{front: "a, an", back: "apple"}, 
-                    {front: "about", back: "banana"},
-                    {front: "above", back: "cranberry"},
-                    {front: "across", back: "durian"}, 
-                    {front: "after", back: "egg"}, 
-                    {front: "again", back: "banana"}];
-
+export default function App() {      
     let frontWord = words[0].front;
     let backWord = words[0].back;
-
+        
     const [state, dispatch] = useReducer(reducer, { wordIndex: 0, words, frontWord, backWord });
-    
-    return (
+
+      return (
         <>
             <Navbar />
             <Context.Provider value={dispatch}>
@@ -56,4 +49,6 @@ export default function App() {
             </Context.Provider>
         </>
     );
+
+  
 }
